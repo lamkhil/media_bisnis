@@ -5,6 +5,6 @@
 	$linkFolder = '/var/www/html/bisnis.sumu.or.id/public/storage/';
 	symlink($targetFolder,$linkFolder);
 	echo '<br>';
-	echo readlink($linkFolder);
+	echo readlink($linkFolder).' - '.$linkFolder;;
 	echo 'Symlink Completed';
 ?>
