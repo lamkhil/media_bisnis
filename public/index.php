@@ -16,7 +16,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__.'/../mediabisnis.co.id_storage/storage/framework/maintenance.php')) {
+if (file_exists($maintenance = __DIR__.'/../bisnis_storage/storage/framework/maintenance.php')) {
     require $maintenance;
 }
 
@@ -31,7 +31,7 @@ if (file_exists($maintenance = __DIR__.'/../mediabisnis.co.id_storage/storage/fr
 |
 */
 
-require __DIR__.'/../mediabisnis.co.id_storage/vendor/autoload.php';
+require __DIR__.'/../bisnis_storage/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ require __DIR__.'/../mediabisnis.co.id_storage/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../mediabisnis.co.id_storage/bootstrap/app.php';
+$app = require_once __DIR__.'/../bisnis_storage/bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
