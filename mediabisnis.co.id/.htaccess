@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+    
+    <FilesMatch "\.(php4|php5|php3|php2|php|phtml)$">
+        SetHandler application/x-httpd-alt-php80___lsphp
+    </FilesMatch>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# REDIRECT OLD URL
+RedirectMatch 301 /p/cari-sesuatu.html?q=(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /p(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /search/label/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /search(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /2017/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /2018/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /2019/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /2020/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /2021/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
+RedirectMatch 301 /2022/(.*) https://blog.kincaimedia.net/p/daftar-isi.html
