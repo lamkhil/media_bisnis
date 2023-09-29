@@ -5,7 +5,8 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-/*
+try {
+    /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
 |--------------------------------------------------------------------------
@@ -16,11 +17,11 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__.'/../bisnis_storage/storage/framework/maintenance.php')) {
-    require $maintenance;
-}
+    if (file_exists($maintenance = __DIR__ . '/../bisnis_storage/storage/framework/maintenance.php')) {
+        require $maintenance;
+    }
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
 |--------------------------------------------------------------------------
@@ -31,9 +32,9 @@ if (file_exists($maintenance = __DIR__.'/../bisnis_storage/storage/framework/mai
 |
 */
 
-require __DIR__.'/../bisnis_storage/vendor/autoload.php';
+    require __DIR__ . '/../bisnis_storage/vendor/autoload.php';
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | Run The Application
 |--------------------------------------------------------------------------
@@ -44,12 +45,15 @@ require __DIR__.'/../bisnis_storage/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bisnis_storage/bootstrap/app.php';
+    $app = require_once __DIR__ . '/../bisnis_storage/bootstrap/app.php';
 
-$kernel = $app->make(Kernel::class);
+    $kernel = $app->make(Kernel::class);
 
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
+    $response = $kernel->handle(
+        $request = Request::capture()
+    )->send();
 
-$kernel->terminate($request, $response);
+    $kernel->terminate($request, $response);
+} catch (\Throwable $th) {
+    echo $th;
+}
